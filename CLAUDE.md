@@ -87,12 +87,22 @@ date: 2024-01-15
 ```
 
 ## Figma MCP
-This project works with the Figma MCP server. When the user shares a Figma link:
-1. Read the Figma file to get colors, typography, spacing, and layout
-2. Update CSS custom properties in `src/styles/global.css` (both light AND dark mode)
-3. Update font families in `tailwind.config.mjs` and font `<link>` tags in `BaseHead.astro`
-4. Update components to match Figma layout if needed
-5. Keep the existing page structure and content — restyle, don't restructure
+
+This project includes a pre-configured `.mcp.json` at the repo root with both the Figma MCP server and the Astro Docs MCP server. Claude Code loads these automatically.
+
+When the user shares a Figma link or says "use my Figma selection":
+
+1. Call `get_variable_defs` first — extract all color and typography variables from the Figma file
+2. Call `get_design_context` for layout structure if component changes are needed (select specific sections, not full pages — full-page payloads are verbose and dilute accuracy)
+3. Map Figma variable names → CSS custom properties in `src/styles/global.css` (e.g., `color/accent` → `--color-accent`)
+4. Update font families in `tailwind.config.mjs` + `<link>` tags in `src/components/BaseHead.astro`
+5. Update BOTH light AND dark token values in global.css — never update one without the other
+6. Keep the existing page structure — restyle tokens only, do not restructure HTML
+
+### Important Notes
+- The Design Kit uses **flat, single-tier variables** (not aliased). `get_variable_defs` returns resolved hex values, not alias names — so variable names map directly to CSS custom properties.
+- When restyling from Figma, update tokens in `global.css` and `tailwind.config.mjs` — NOT individual components. The token architecture means every component updates automatically.
+- Use Plan Mode (`Shift+Tab`) to preview changes before applying them.
 
 ## Deployment
 Deploys to Cloudflare Pages. After changes:
