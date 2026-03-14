@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('projects'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout
+  title="Your Name — UX Designer"
+  description="UX designer crafting thoughtful, user-centered digital experiences. View my portfolio of mobile, web, and product design work."
+>
+  <!-- Hero Section -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+    <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">
+      Hi, I'm <span class="text-primary-600">Your Name</span>
+    </h1>
+    <p class="mt-4 text-lg sm:text-xl text-gray-600 max-w-2xl">
+      UX designer focused on creating intuitive, accessible digital experiences.
+      I turn complex problems into simple, elegant solutions.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-4">
+      <a
+        href="/about"
+        class="inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+      >
+        About me
+      </a>
+      <a
+        href="mailto:hello@example.com"
+        class="inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+      >
+        Get in touch
+      </a>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 sm:pb-24" aria-labelledby="projects-heading">
+    <h2 id="projects-heading" class="text-2xl font-bold text-gray-900 mb-8">
+      Selected Work
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {projects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          image={project.data.image}
+          tags={project.data.tags}
+          slug={project.id}
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

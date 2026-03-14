@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout
+  title={`${project.data.title} — Your Name`}
+  description={project.data.description}
+  image={project.data.image}
+  type="article"
+>
+  <article class="max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
+    <a
+      href="/"
+      class="inline-flex items-center text-sm text-gray-500 hover:text-gray-900 transition-colors mb-8"
+    >
+      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+      Back to projects
+    </a>
+
+    <header>
+      <h1 class="text-4xl font-bold text-gray-900 tracking-tight">
+        {project.data.title}
+      </h1>
+      <p class="mt-4 text-lg text-gray-600">
+        {project.data.description}
+      </p>
+      {project.data.tags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-2">
+          {project.data.tags.map((tag: string) => (
+            <span class="inline-block px-3 py-1 text-sm font-medium bg-gray-100 text-gray-700 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="mt-8 rounded-xl overflow-hidden bg-gray-100">
+      <img
+        src={project.data.image}
+        alt={`${project.data.title} — project screenshot`}
+        class="w-full"
+      />
+    </div>
+
+    <div class="mt-12 prose prose-gray max-w-none prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-p:text-gray-600 prose-li:text-gray-600 prose-strong:text-gray-900">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
