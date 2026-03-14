@@ -1,6 +1,6 @@
 # UX Portfolio Starter
 
-A modern Astro + Tailwind portfolio site with a token-based design system. You are helping a UX designer customize this site from their Figma designs.
+A modern Astro + Tailwind portfolio site with a token-based design system. You are helping a UX designer customize this site using natural language prompts.
 
 ## Commands
 - `npm run dev` — dev server at localhost:4321
@@ -21,7 +21,7 @@ public/         → Static files (images, favicon, _headers for Cloudflare)
 
 ## Design System — Token Architecture
 
-ALL visual styling is controlled by CSS custom properties in `src/styles/global.css` and font/color tokens in `tailwind.config.mjs`. When restyling from Figma, update tokens — not individual components.
+ALL visual styling is controlled by CSS custom properties in `src/styles/global.css` and font/color tokens in `tailwind.config.mjs`. When restyling, update tokens — not individual components.
 
 ### Colors (in global.css `:root`)
 ```
@@ -76,6 +76,17 @@ Uses Tailwind defaults (multiples of 4) plus custom: `spacing-18` (4.5rem), `spa
 - IMPORTANT: Dark mode support — always update both light AND dark token values
 - When adding images, put them in `public/images/` and reference as `/images/filename.jpg`
 
+## How to Restyle
+
+The token architecture means changing a few values updates the entire site. Here's the approach:
+
+1. **Colors** — Update CSS custom properties in `src/styles/global.css` (both `:root` for light mode AND the `@media (prefers-color-scheme: dark)` block)
+2. **Fonts** — Update `<link>` tags in `src/components/BaseHead.astro`, `fontFamily` in `tailwind.config.mjs`, and `font-family` in global.css
+3. **Content** — Edit project markdown files in `src/content/projects/`, page content in `src/pages/`
+4. **Images** — Add to `public/images/` and reference as `/images/filename.jpg`
+
+Use Plan Mode (`Shift+Tab`) to preview what Claude would change before applying.
+
 ## Projects (Content Collection)
 Projects live in `src/content/projects/` as markdown files:
 ```yaml
@@ -85,24 +96,6 @@ image: "/images/project-name.jpg"
 tags: ["UX Design", "Mobile"]
 date: 2024-01-15
 ```
-
-## Figma MCP
-
-This project includes a pre-configured `.mcp.json` at the repo root with both the Figma MCP server and the Astro Docs MCP server. Claude Code loads these automatically.
-
-When the user shares a Figma link or says "use my Figma selection":
-
-1. Call `get_variable_defs` first — extract all color and typography variables from the Figma file
-2. Call `get_design_context` for layout structure if component changes are needed (select specific sections, not full pages — full-page payloads are verbose and dilute accuracy)
-3. Map Figma variable names → CSS custom properties in `src/styles/global.css` (e.g., `color/accent` → `--color-accent`)
-4. Update font families in `tailwind.config.mjs` + `<link>` tags in `src/components/BaseHead.astro`
-5. Update BOTH light AND dark token values in global.css — never update one without the other
-6. Keep the existing page structure — restyle tokens only, do not restructure HTML
-
-### Important Notes
-- The Design Kit uses **flat, single-tier variables** (not aliased). `get_variable_defs` returns resolved hex values, not alias names — so variable names map directly to CSS custom properties.
-- When restyling from Figma, update tokens in `global.css` and `tailwind.config.mjs` — NOT individual components. The token architecture means every component updates automatically.
-- Use Plan Mode (`Shift+Tab`) to preview changes before applying them.
 
 ## Deployment
 Deploys to Cloudflare Pages. After changes:

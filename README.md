@@ -1,6 +1,6 @@
 # UX Portfolio Starter
 
-A clean, SEO-ready portfolio template for UX designers. Built with [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com), designed to be restyled with [Claude Code](https://code.claude.com) + [Figma MCP](https://help.figma.com/hc/en-us/articles/32132100833559).
+A clean, SEO-ready portfolio template for UX designers. Built with [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com), designed to be customized with [Claude Code](https://code.claude.com) — no coding experience needed.
 
 ## Prerequisites
 
@@ -11,9 +11,6 @@ Before you start, make sure you have:
 - **GitHub account** — free tier is fine
 - **Claude Pro subscription** ($20/mo) — required for Claude Code → [claude.ai/upgrade](https://claude.ai/upgrade)
 - **Claude Code** installed: `npm install -g @anthropic-ai/claude-code`
-- **Figma Pro account** ($3/mo per editor, annual billing) with a Full or Dev seat — [figma.com/pricing](https://www.figma.com/pricing/)
-
-> **Why Figma Pro?** The Figma Starter (free) plan only allows 6 MCP tool calls per month. A single restyle exercise uses 3–5 calls. The Pro plan gives you 200 calls/day. [Learn more](https://developers.figma.com/docs/figma-mcp-server/plans-access-and-permissions/)
 
 ## Quick Start
 
@@ -21,7 +18,7 @@ Before you start, make sure you have:
 
 Click **"Use this template"** > **"Create a new repository"** at the top of this page.
 
-### 2. Clone Your Repo
+### 2. Clone & Run
 
 ```bash
 git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
@@ -32,59 +29,53 @@ npm run dev
 
 Your site is running at **http://localhost:4321**
 
-### 3. Connect MCP Servers
+### 3. Open Claude Code
 
-This repo includes a `.mcp.json` that pre-configures both the Figma MCP and Astro Docs MCP servers. You just need to add them to your Claude Code:
+In your project folder, open a terminal and type:
 
-**Figma MCP** (one command):
 ```bash
-claude mcp add --scope user --transport http figma https://mcp.figma.com/mcp
+claude
 ```
 
-**Astro Docs MCP** (gives Claude live Astro 5.x docs):
-```bash
-claude mcp add --transport http "Astro docs" https://mcp.docs.astro.build/mcp
+That's it. Claude Code reads the `CLAUDE.md` file in this repo and understands the entire project — the design tokens, the file structure, where to make changes.
+
+### 4. Customize with Prompts
+
+Talk to Claude Code in plain English. Here are some starters:
+
+**Change the accent color:**
+```
+Change the accent color to a warm coral (#C4553A). Update both light
+and dark mode values in global.css.
 ```
 
-The `--scope user` flag on the Figma command makes it available across all your projects.
-
-### 4. Authenticate Figma
-
-> **Important:** OAuth triggers at first use, not at install.
-
-1. Open Claude Code in your project directory: `claude`
-2. Type `/mcp`
-3. Select **figma** from the list → click **Authenticate**
-4. Browser pop-up appears → click **Allow Access**
-5. Return to terminal — you should see: `figma ✓ connected`
-
-Run `/mcp` again to verify both servers show green:
+**Swap the heading font:**
 ```
-figma           ✓ connected
-Astro docs      ✓ connected
+Swap the heading font to Instrument Serif from Google Fonts. Update
+BaseHead.astro, tailwind.config.mjs, and global.css.
 ```
 
-### 5. Restyle with Figma
-
-Share your Figma portfolio link with Claude Code using the 2-step approach:
-
-**Step 1 — Read the tokens (don't change anything yet):**
+**Update your bio:**
 ```
-Here's the Figma Design Kit link: [paste your Figma link]
-
-Use get_variable_defs to extract the color and typography tokens
-from this file. List what you found — don't make any changes yet.
+Update the about page. My name is [name], I'm a UX designer based
+in [city]. I specialize in [your focus]. Keep the existing layout.
 ```
 
-**Step 2 — Apply the restyle:**
+**Add a project:**
 ```
-Now apply those tokens to the project following the architecture
-in CLAUDE.md. Update src/styles/global.css (both light AND dark
-mode values) and update the font families in tailwind.config.mjs
-and BaseHead.astro. Do not change any page structure or content.
+Create a new project called "[name]". It's a [type] project for [client].
+Add a placeholder image and tags for [tags]. Put it in the content collection.
 ```
 
-### 6. Deploy to Cloudflare Pages
+**Preview before changing (Plan Mode):**
+```
+Shift+Tab → "Review CLAUDE.md and global.css. Tell me what you'd
+change to apply a warm serif direction — don't make changes yet."
+```
+
+### 5. Deploy to Cloudflare Pages
+
+Push your changes to GitHub:
 
 ```bash
 git add -A && git commit -m "Apply my design direction" && git push
@@ -111,7 +102,6 @@ src/
   pages/        → Routes (index, about, project pages)
   styles/       → Global CSS + design tokens
 public/         → Static files (images, favicon)
-.mcp.json       → Pre-configured MCP servers (Figma + Astro Docs)
 CLAUDE.md       → Project context for Claude Code
 ```
 
@@ -139,7 +129,7 @@ Put images in `public/images/`.
 - **Accessibility** — Skip links, semantic HTML, ARIA, focus indicators, reduced motion
 - **Security** — Cloudflare security headers (X-Frame-Options, CSP hints, etc.)
 - **Performance** — Zero JavaScript by default, lazy-loaded images, static output
-- **AI-Ready** — CLAUDE.md gives Claude Code full project context; .mcp.json pre-configures MCP servers
+- **AI-Ready** — CLAUDE.md gives Claude Code full project context so it makes smart changes
 - **Dark Mode** — Automatic via `prefers-color-scheme`, token-based (light + dark values)
 
 ## Prompt Library
@@ -147,9 +137,11 @@ Put images in `public/images/`.
 | Moment | Prompt |
 |--------|--------|
 | Plan Mode check | `Shift+Tab` → "Review CLAUDE.md and global.css. Tell me what you'd change to apply a warm serif direction — don't make changes yet." |
-| Restyle from Figma link | "Here's the Figma link: [url]. Use get_variable_defs to extract tokens, then apply them to global.css (light + dark) and tailwind.config.mjs." |
 | Swap a single color | "Change `--color-accent` to `#C4553A`. Update both light and dark mode values in global.css." |
 | Swap the heading font | "Swap the heading font to Instrument Serif from Google Fonts. Update BaseHead.astro, tailwind.config.mjs, and global.css." |
+| Update your bio | "Update the about page with my name, location, and specialties. Keep the layout." |
+| Add a project | "Create a new project called [name] with tags [tags] and a placeholder image." |
+| Full restyle | "Give this site a warm, earthy feel — think terracotta accent, cream backgrounds, and a serif heading font. Update both light and dark mode." |
 | Deploy | `git add -A && git commit -m "my design direction" && git push` |
 
 ## Commands
