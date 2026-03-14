@@ -4,73 +4,117 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="About — Your Name"
-  description="Learn about my background in UX design, my process, and the tools I use to create user-centered digital experiences."
+  description="Learn more about my design philosophy, experience, and the tools I use to create user-centered digital experiences."
 >
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-    <h1 class="text-4xl font-bold text-gray-900 tracking-tight">
-      About Me
-    </h1>
+  <section class="max-w-content mx-auto px-6 pt-20 sm:pt-30 pb-20 sm:pb-30">
+    <div class="max-w-2xl">
+      <!-- Page header -->
+      <p
+        class="font-body text-caption uppercase tracking-widest mb-4"
+        style="color: var(--color-accent);"
+      >
+        About
+      </p>
+      <h1 class="font-display text-display-lg">
+        A little about me
+      </h1>
 
-    <div class="mt-8 space-y-6 text-gray-600 text-lg leading-relaxed">
-      <p>
-        I'm a UX designer with a passion for making technology accessible
-        and enjoyable for everyone. I believe great design is invisible —
-        it just works.
-      </p>
-      <p>
-        With a background in [your background], I bring a unique perspective
-        to every project. I love the messy middle of the design process —
-        synthesizing research, sketching ideas, and testing solutions with
-        real users.
-      </p>
-      <p>
-        When I'm not designing, you'll find me [your interests].
-      </p>
-    </div>
+      <!-- Bio -->
+      <div class="mt-10 space-y-6 font-body text-body-lg" style="color: var(--color-text-muted);">
+        <p>
+          I'm a UX designer who believes great design is invisible — it just works.
+          I focus on understanding real user needs and translating them into
+          interfaces that feel intuitive from the first interaction.
+        </p>
+        <p>
+          With a background in [your background], I bring a unique perspective
+          to digital product design. I'm passionate about accessibility,
+          design systems, and bridging the gap between design and development.
+        </p>
+        <p>
+          When I'm not designing, you'll find me [your interests].
+          I'm always exploring new tools and approaches to push my craft forward.
+        </p>
+      </div>
 
-    <div class="mt-16">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">
-        What I Do
-      </h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div class="p-5 rounded-lg border border-gray-200">
-          <h3 class="font-semibold text-gray-900">UX Research</h3>
-          <p class="mt-2 text-sm text-gray-600">
-            User interviews, usability testing, surveys, and data analysis to uncover real needs.
-          </p>
-        </div>
-        <div class="p-5 rounded-lg border border-gray-200">
-          <h3 class="font-semibold text-gray-900">Interaction Design</h3>
-          <p class="mt-2 text-sm text-gray-600">
-            Wireframes, prototypes, and flows that turn complex systems into intuitive experiences.
-          </p>
-        </div>
-        <div class="p-5 rounded-lg border border-gray-200">
-          <h3 class="font-semibold text-gray-900">Visual Design</h3>
-          <p class="mt-2 text-sm text-gray-600">
-            Clean, modern interfaces with strong typography, color, and visual hierarchy.
-          </p>
-        </div>
-        <div class="p-5 rounded-lg border border-gray-200">
-          <h3 class="font-semibold text-gray-900">Design Systems</h3>
-          <p class="mt-2 text-sm text-gray-600">
-            Scalable component libraries and design tokens for consistent product experiences.
-          </p>
+      <!-- Skills / Tools -->
+      <div class="mt-16">
+        <h2 class="font-display text-heading mb-6">
+          Tools & Skills
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          {[
+            'Figma', 'Prototyping', 'User Research',
+            'Design Systems', 'Interaction Design', 'Accessibility',
+            'HTML & CSS', 'Usability Testing', 'Information Architecture',
+          ].map((skill) => (
+            <div
+              class="px-4 py-3 rounded-tag font-body text-caption text-center"
+              style={`
+                background-color: var(--color-surface-elevated);
+                border: 1px solid var(--color-border);
+                color: var(--color-text-muted);
+              `}
+            >
+              {skill}
+            </div>
+          ))}
         </div>
       </div>
-    </div>
 
-    <div class="mt-16 p-8 rounded-xl bg-gray-50 text-center">
-      <h2 class="text-2xl font-bold text-gray-900">Let's Work Together</h2>
-      <p class="mt-2 text-gray-600">
-        I'm always interested in new projects and collaborations.
-      </p>
-      <a
-        href="mailto:hello@example.com"
-        class="mt-4 inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
-      >
-        Say hello
-      </a>
+      <!-- Experience timeline -->
+      <div class="mt-16">
+        <h2 class="font-display text-heading mb-6">
+          Experience
+        </h2>
+        <div class="space-y-8">
+          {[
+            { role: 'Senior UX Designer', company: 'Company Name', period: '2023 — Present', description: 'Led design for key product features, improving usability metrics by X%.' },
+            { role: 'UX Designer', company: 'Company Name', period: '2021 — 2023', description: 'Designed and shipped mobile and web experiences for Y users.' },
+            { role: 'Junior Designer', company: 'Company Name', period: '2019 — 2021', description: 'Started my design career creating wireframes and prototypes.' },
+          ].map((job) => (
+            <div
+              class="pb-8 border-b last:border-b-0"
+              style="border-color: var(--color-border);"
+            >
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                <h3 class="font-display text-subheading" style="color: var(--color-text);">
+                  {job.role}
+                </h3>
+                <span class="font-body text-caption" style="color: var(--color-text-faint);">
+                  {job.period}
+                </span>
+              </div>
+              <p class="mt-1 font-body text-caption font-medium" style="color: var(--color-accent);">
+                {job.company}
+              </p>
+              <p class="mt-2 font-body text-body" style="color: var(--color-text-muted);">
+                {job.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-16 pt-16 border-t" style="border-color: var(--color-border);">
+        <h2 class="font-display text-heading">
+          Let's connect
+        </h2>
+        <p class="mt-3 font-body text-body-lg" style="color: var(--color-text-muted);">
+          I'm always interested in new projects and conversations.
+        </p>
+        <a
+          href="mailto:hello@example.com"
+          class="inline-flex items-center mt-6 px-6 py-3 font-body text-body font-medium rounded-button transition-colors"
+          style={`
+            background-color: var(--color-accent);
+            color: var(--color-text-inverse);
+          `}
+        >
+          Say hello
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>

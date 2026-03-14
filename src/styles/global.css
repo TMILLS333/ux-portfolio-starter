@@ -2,11 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   DESIGN TOKENS
+   Claude Code + Figma MCP will update these values
+   to match your Figma design. Light + dark in one place.
+   ============================================ */
+
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  :root {
+    /* Backgrounds */
+    --color-bg: #FAFAF8;
+    --color-surface: #FFFFFF;
+    --color-surface-elevated: #FFFFFF;
+    --color-border: #E4E2DD;
+
+    /* Text */
+    --color-text: #1A1918;
+    --color-text-muted: #6B6966;
+    --color-text-faint: #A8A5A0;
+    --color-text-inverse: #FAFAF8;
+
+    /* Accent */
+    --color-accent: #0A7B83;
+    --color-accent-hover: #065A61;
+    --color-accent-subtle: #E8F4F5;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(26, 25, 24, 0.04);
+    --shadow-md: 0 4px 12px rgba(26, 25, 24, 0.06);
+    --shadow-lg: 0 8px 24px rgba(26, 25, 24, 0.08);
+    --shadow-card-hover: 0 8px 30px rgba(26, 25, 24, 0.10);
   }
 
+  /* Dark mode — respects OS preference */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-bg: #141413;
+      --color-surface: #1C1B19;
+      --color-surface-elevated: #242320;
+      --color-border: #2E2D2B;
+
+      --color-text: #E0DFDD;
+      --color-text-muted: #8A8886;
+      --color-text-faint: #5A5957;
+      --color-text-inverse: #1A1918;
+
+      --color-accent: #4FA8B3;
+      --color-accent-hover: #6DBDC6;
+      --color-accent-subtle: #0F2B2E;
+
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.35);
+      --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  /* Base resets */
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Respect reduced motion preferences */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -21,14 +87,49 @@
     }
   }
 
+  /* Focus styles for keyboard navigation */
   :focus-visible {
-    outline: 2px solid theme('colors.primary.500');
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
   }
 
+  /* Better image defaults */
   img {
     max-width: 100%;
     height: auto;
     display: block;
+  }
+
+  /* Selection color */
+  ::selection {
+    background-color: var(--color-accent-subtle);
+    color: var(--color-text);
+  }
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+@layer utilities {
+  /* Glass effect for cards on hover */
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .glass {
+      background: rgba(28, 27, 25, 0.7);
+    }
+  }
+
+  /* Gradient text utility */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }

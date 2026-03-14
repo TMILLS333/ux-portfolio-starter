@@ -1,30 +1,55 @@
 ---
 const currentYear = new Date().getFullYear();
+
+// Social links — update these with your actual URLs
+const socialLinks = [
+  { label: 'LinkedIn', href: '#', icon: 'linkedin' },
+  { label: 'Dribbble', href: '#', icon: 'dribbble' },
+  { label: 'Email', href: 'mailto:hello@example.com', icon: 'email' },
+];
 ---
 
-<footer class="border-t border-gray-200 mt-auto">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-8">
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-gray-500">
-        &copy; {currentYear} Your Name. All rights reserved.
-      </p>
-      <div class="flex items-center gap-4">
+<footer class="border-t mt-auto" style="border-color: var(--color-border);">
+  <div class="max-w-content mx-auto px-6 py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <!-- Copyright -->
+    <p class="font-body text-caption" style="color: var(--color-text-muted);">
+      &copy; {currentYear} Your Name. All rights reserved.
+    </p>
+
+    <!-- Social links -->
+    <div class="flex items-center gap-5" role="list" aria-label="Social links">
+      {socialLinks.map(({ label, href, icon }) => (
         <a
-          href="https://linkedin.com/in/your-profile"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
-          aria-label="LinkedIn profile (opens in new tab)"
+          href={href}
+          class="transition-opacity hover:opacity-70"
+          style="color: var(--color-text-muted);"
+          aria-label={label}
+          target={href.startsWith('mailto:') ? undefined : '_blank'}
+          rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
         >
-          LinkedIn
+          {icon === 'linkedin' && (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect width="4" height="12" x="2" y="9" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          )}
+          {icon === 'dribbble' && (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94" />
+              <path d="M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32" />
+              <path d="M8.56 2.75c4.37 6 6 9.42 8 17.72" />
+            </svg>
+          )}
+          {icon === 'email' && (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          )}
         </a>
-        <a
-          href="mailto:hello@example.com"
-          class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
-        >
-          Email
-        </a>
-      </div>
+      ))}
     </div>
   </div>
 </footer>

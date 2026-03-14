@@ -3,19 +3,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Page Not Found — Your Name"
+  title="Page not found — Your Name"
   description="The page you're looking for doesn't exist."
 >
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-24 text-center">
-    <h1 class="text-6xl font-bold text-gray-900">404</h1>
-    <p class="mt-4 text-lg text-gray-600">
-      This page doesn't exist. Maybe it was moved or you mistyped the URL.
+  <section class="max-w-content mx-auto px-6 py-30 text-center">
+    <p
+      class="font-display text-display-xl"
+      style="color: var(--color-border);"
+    >
+      404
+    </p>
+    <h1 class="mt-4 font-display text-heading">
+      Page not found
+    </h1>
+    <p
+      class="mt-3 font-body text-body-lg"
+      style="color: var(--color-text-muted);"
+    >
+      The page you're looking for doesn't exist or has been moved.
     </p>
     <a
       href="/"
-      class="mt-8 inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors"
+      class="inline-flex items-center mt-8 px-6 py-3 font-body text-body font-medium rounded-button transition-colors"
+      style={`
+        background-color: var(--color-accent);
+        color: var(--color-text-inverse);
+      `}
     >
-      Go home
+      Back to home
     </a>
   </section>
 </BaseLayout>

@@ -12,36 +12,72 @@ const projects = (await getCollection('projects'))
   description="UX designer crafting thoughtful, user-centered digital experiences. View my portfolio of mobile, web, and product design work."
 >
   <!-- Hero Section -->
-  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24">
-    <h1 class="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">
-      Hi, I'm <span class="text-primary-600">Your Name</span>
-    </h1>
-    <p class="mt-4 text-lg sm:text-xl text-gray-600 max-w-2xl">
-      UX designer focused on creating intuitive, accessible digital experiences.
-      I turn complex problems into simple, elegant solutions.
+  <section class="max-w-content mx-auto px-6 pt-20 sm:pt-30 pb-16 sm:pb-24">
+    <p
+      class="font-body text-caption uppercase tracking-widest mb-4"
+      style="color: var(--color-accent);"
+    >
+      UX Designer
     </p>
-    <div class="mt-8 flex flex-wrap gap-4">
+    <h1 class="font-display text-display-lg sm:text-display-xl max-w-3xl">
+      Hi, I'm <span class="text-gradient">Your Name</span>
+    </h1>
+    <p
+      class="mt-6 font-body text-body-lg max-w-2xl"
+      style="color: var(--color-text-muted);"
+    >
+      I design intuitive, accessible digital experiences that solve real problems.
+      Turning complex challenges into simple, elegant solutions.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-4">
       <a
-        href="/about"
-        class="inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-lg bg-primary-600 text-white hover:bg-primary-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        href="#projects"
+        class="inline-flex items-center px-6 py-3 font-body text-body font-medium rounded-button transition-colors"
+        style={`
+          background-color: var(--color-accent);
+          color: var(--color-text-inverse);
+        `}
       >
-        About me
+        View my work
+        <svg class="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17L17 7M17 7H7M17 7V17" />
+        </svg>
       </a>
       <a
-        href="mailto:hello@example.com"
-        class="inline-flex items-center px-5 py-2.5 text-sm font-medium rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
+        href="/about"
+        class="inline-flex items-center px-6 py-3 font-body text-body font-medium rounded-button border transition-colors"
+        style={`
+          border-color: var(--color-border);
+          color: var(--color-text);
+        `}
       >
-        Get in touch
+        About me
       </a>
     </div>
   </section>
 
   <!-- Projects Section -->
-  <section class="max-w-5xl mx-auto px-4 sm:px-6 pb-16 sm:pb-24" aria-labelledby="projects-heading">
-    <h2 id="projects-heading" class="text-2xl font-bold text-gray-900 mb-8">
-      Selected Work
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <section
+    id="projects"
+    class="max-w-content mx-auto px-6 pb-20 sm:pb-30"
+    aria-labelledby="projects-heading"
+  >
+    <div class="flex items-center justify-between mb-10">
+      <h2
+        id="projects-heading"
+        class="font-display text-heading"
+      >
+        Selected Work
+      </h2>
+      <span
+        class="hidden sm:block font-body text-caption"
+        style="color: var(--color-text-faint);"
+      >
+        {projects.length} projects
+      </span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {projects.map((project) => (
         <ProjectCard
           title={project.data.title}
@@ -51,6 +87,34 @@ const projects = (await getCollection('projects'))
           slug={project.id}
         />
       ))}
+    </div>
+  </section>
+
+  <!-- Contact CTA -->
+  <section
+    class="border-t py-20 sm:py-30"
+    style="border-color: var(--color-border);"
+  >
+    <div class="max-w-content mx-auto px-6 text-center">
+      <h2 class="font-display text-display">
+        Let's work together
+      </h2>
+      <p
+        class="mt-4 font-body text-body-lg max-w-xl mx-auto"
+        style="color: var(--color-text-muted);"
+      >
+        I'm always open to new opportunities and collaborations.
+      </p>
+      <a
+        href="mailto:hello@example.com"
+        class="inline-flex items-center mt-8 px-8 py-3 font-body text-body font-medium rounded-button transition-colors"
+        style={`
+          background-color: var(--color-accent);
+          color: var(--color-text-inverse);
+        `}
+      >
+        Get in touch
+      </a>
     </div>
   </section>
 </BaseLayout>
