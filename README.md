@@ -154,4 +154,4 @@ Put images in `public/images/`.
 
 ---
 
-Built for the [Pixels & Charm](https://pixelsandcharm.com) workshop series.
+Built for a community workshop series.
