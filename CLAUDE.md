@@ -7,6 +7,16 @@ A modern Astro + Tailwind portfolio site with a token-based design system. You a
 - `npm run build` — production build to dist/
 - `npm run preview` — preview the build
 
+## Skills
+
+This project includes two Claude Code skills that shape how you work with the site owner:
+
+### Portfolio Maintainer (always active)
+Located at `.claude/skills/portfolio-maintainer/SKILL.md`. This is your default behavior layer. It sets the tone for working with non-developers: explain outcomes not code, use plain language, celebrate progress, confirm before destructive changes. Read it at the start of every session.
+
+### Setup Pilot (on demand)
+Located at `.claude/skills/setup-pilot/SKILL.md`. Runs when the user says `/setup`, asks to check their environment, or hits setup-related errors. Checks Node, Git, npm, dependencies, build, site URL, and email placeholders. Reports results in a friendly checklist.
+
 ## Project Structure
 ```
 src/
@@ -17,6 +27,8 @@ src/
   pages/        → Each .astro file = one URL route
   styles/       → global.css (design tokens + Tailwind + dark mode)
 public/         → Static files (images, favicon, _headers for Cloudflare)
+.claude/
+  skills/       → Claude Code skills (setup-pilot, portfolio-maintainer)
 ```
 
 ## Design System — Token Architecture
@@ -109,4 +121,4 @@ Deploys to Cloudflare Pages. After changes:
 - Framework preset: Astro (auto-detected)
 
 ### IMPORTANT: Update your site URL
-After connecting to Cloudflare Pages, update the `site` value in `astro.config.mjs` to your actual `.pages.dev` URL. This affects the sitemap and social sharing previews (Open Graph images). Also update the sitemap URL in `public/robots.txt` to match.
+After connecting to Cloudflare Pages, update the `site` value in `astro.config.mjs` to your actual `.pages.dev` URL. This affects the sitemap, robots.txt, and social sharing previews (Open Graph images). The robots.txt is generated dynamically from this URL, so you only need to update it in one place.
