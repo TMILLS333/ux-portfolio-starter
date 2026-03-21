@@ -3,11 +3,15 @@
   "type": "module",
   "version": "1.0.0",
   "description": "A clean, SEO-ready portfolio starter for UX designers. Built for the Claude Code + Figma MCP workshop by Pixels & Charm.",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "astro telemetry disable"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.3.0",

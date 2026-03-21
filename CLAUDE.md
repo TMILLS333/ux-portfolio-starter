@@ -102,3 +102,11 @@ Deploys to Cloudflare Pages. After changes:
 1. `git add -A && git commit -m "description of change"`
 2. `git push`
 3. Cloudflare auto-builds and deploys
+
+### Cloudflare Pages Config
+- Build command: `npm run build`
+- Output directory: `dist`
+- Framework preset: Astro (auto-detected)
+
+### IMPORTANT: Update your site URL
+After connecting to Cloudflare Pages, update the `site` value in `astro.config.mjs` to your actual `.pages.dev` URL. This affects the sitemap and social sharing previews (Open Graph images). Also update the sitemap URL in `public/robots.txt` to match.

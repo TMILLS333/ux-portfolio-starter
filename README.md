@@ -142,6 +142,8 @@ Put images in `public/images/`.
 | Update your bio | "Update the about page with my name, location, and specialties. Keep the layout." |
 | Add a project | "Create a new project called [name] with tags [tags] and a placeholder image." |
 | Full restyle | "Give this site a warm, earthy feel — think terracotta accent, cream backgrounds, and a serif heading font. Update both light and dark mode." |
+| Update site URL | "Update the site URL in astro.config.mjs to https://my-name.pages.dev and update robots.txt to match." |
+| Update email | "Change the contact email from hello@example.com to my-email@example.com everywhere it appears." |
 | Deploy | `git add -A && git commit -m "my design direction" && git push` |
 
 ## Commands
