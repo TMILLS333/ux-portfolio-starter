@@ -19,13 +19,133 @@ const { title, description, image, type } = Astro.props;
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} image={image} type={type} />
+    <script is:inline>
+      // Apply theme immediately to prevent flash of wrong theme
+      (function() {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body class="min-h-screen flex flex-col antialiased">
     <SkipLink />
     <Header />
-    <main id="main-content" class="flex-1">
+    <main id="main-content" class="flex-1 snap-container">
       <slot />
     </main>
     <Footer />
+
+    <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
+    <script>
+      const toggle = document.getElementById('theme-toggle');
+      toggle?.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        setTimeout(initLogoFog, 50);
+      });
+
+      function initLogoFog() {
+        const el = document.getElementById('logo-fog');
+        if (!el || typeof VANTA === 'undefined') return;
+
+        const isDark = document.documentElement.classList.contains('dark');
+
+        if ((window as any).__logoFog) {
+          (window as any).__logoFog.destroy();
+        }
+
+        (window as any).__logoFog = (window as any).VANTA.FOG({
+          el: el,
+          mouseControls: false,
+          touchControls: false,
+          gyroControls: false,
+          minHeight: 32,
+          minWidth: 32,
+          highlightColor: isDark ? 0xFF69B4 : 0xFF1493,
+          midtoneColor: isDark ? 0xFF85C8 : 0xE0007B,
+          lowlightColor: isDark ? 0xE0007B : 0xFF69B4,
+          baseColor: isDark ? 0x3D0A1F : 0xFAFAF8,
+          blurFactor: 0.63,
+          speed: 0.4,
+          zoom: 0.9,
+        });
+      }
+
+      // Init once scripts are loaded
+      if (document.readyState === 'complete') {
+        initLogoFog();
+      } else {
+        window.addEventListener('load', initLogoFog);
+      }
+
+      // ============================================
+      // REVEAL ON SCROLL — IntersectionObserver
+      // ============================================
+      const snapContainer = document.querySelector('.snap-container');
+      const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+      if (revealEls.length > 0) {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            root: snapContainer || null,
+            threshold: 0.15,
+            rootMargin: '0px 0px -60px 0px',
+          }
+        );
+        revealEls.forEach((el) => revealObserver.observe(el));
+      }
+
+      // ============================================
+      // MAGNETIC / GRAVITATIONAL HOVER
+      // ============================================
+      const magnetics = document.querySelectorAll('.magnetic');
+      const strength = 0.35; // how far elements pull (0-1)
+      const innerStrength = 0.15; // inner content moves less
+
+      magnetics.forEach((el) => {
+        const inner = el.querySelector('.magnetic-inner') as HTMLElement | null;
+
+        el.addEventListener('mousemove', (e: Event) => {
+          const evt = e as MouseEvent;
+          const rect = (el as HTMLElement).getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          const deltaX = (evt.clientX - centerX) * strength;
+          const deltaY = (evt.clientY - centerY) * strength;
+
+          (el as HTMLElement).style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+
+          if (inner) {
+            inner.style.transform = `translate(${deltaX * innerStrength}px, ${deltaY * innerStrength}px)`;
+          }
+        });
+
+        el.addEventListener('mouseleave', () => {
+          (el as HTMLElement).style.transform = 'translate(0, 0)';
+          if (inner) {
+            inner.style.transform = 'translate(0, 0)';
+          }
+        });
+
+        // Focus support for keyboard
+        el.addEventListener('focus', () => {
+          (el as HTMLElement).style.transform = 'translate(0, -3px) scale(1.03)';
+        });
+        el.addEventListener('blur', () => {
+          (el as HTMLElement).style.transform = 'translate(0, 0)';
+        });
+      });
+    </script>
   </body>
 </html>

@@ -1,21 +1,11 @@
-# UX Portfolio Starter
+# UX Portfolio Starter — Tania Millan
 
-A modern Astro + Tailwind portfolio site with a token-based design system. You are helping a UX designer customize this site using natural language prompts.
+A modern Astro + Tailwind portfolio site with a token-based design system. You are helping Tania Millan (UX designer) customize this site using natural language prompts.
 
 ## Commands
 - `npm run dev` — dev server at localhost:4321
 - `npm run build` — production build to dist/
 - `npm run preview` — preview the build
-
-## Skills
-
-This project includes two Claude Code skills that shape how you work with the site owner:
-
-### Portfolio Maintainer (always active)
-Located at `.claude/skills/portfolio-maintainer/SKILL.md`. This is your default behavior layer. It sets the tone for working with non-developers: explain outcomes not code, use plain language, celebrate progress, confirm before destructive changes. Read it at the start of every session.
-
-### Setup Pilot (on demand)
-Located at `.claude/skills/setup-pilot/SKILL.md`. Runs when the user says `/setup`, asks to check their environment, or hits setup-related errors. Checks Node, Git, npm, dependencies, build, site URL, and email placeholders. Reports results in a friendly checklist.
 
 ## Project Structure
 ```
@@ -27,8 +17,6 @@ src/
   pages/        → Each .astro file = one URL route
   styles/       → global.css (design tokens + Tailwind + dark mode)
 public/         → Static files (images, favicon, _headers for Cloudflare)
-.claude/
-  skills/       → Claude Code skills (setup-pilot, portfolio-maintainer)
 ```
 
 ## Design System — Token Architecture
@@ -50,7 +38,7 @@ ALL visual styling is controlled by CSS custom properties in `src/styles/global.
 --color-accent-subtle   → Light accent tint for tags, selections
 ```
 
-Dark mode variants live in `@media (prefers-color-scheme: dark)` in the same file. Update BOTH light and dark values when changing colors.
+Dark mode is controlled via `.dark` class on `<html>` (not media query). Toggled by the sun/moon ThemeToggle component. Update BOTH `:root` and `.dark` values when changing colors.
 
 ### Fonts (in tailwind.config.mjs)
 ```
@@ -92,7 +80,7 @@ Uses Tailwind defaults (multiples of 4) plus custom: `spacing-18` (4.5rem), `spa
 
 The token architecture means changing a few values updates the entire site. Here's the approach:
 
-1. **Colors** — Update CSS custom properties in `src/styles/global.css` (both `:root` for light mode AND the `@media (prefers-color-scheme: dark)` block)
+1. **Colors** — Update CSS custom properties in `src/styles/global.css` (both `:root` for light mode AND the `.dark` block)
 2. **Fonts** — Update `<link>` tags in `src/components/BaseHead.astro`, `fontFamily` in `tailwind.config.mjs`, and `font-family` in global.css
 3. **Content** — Edit project markdown files in `src/content/projects/`, page content in `src/pages/`
 4. **Images** — Add to `public/images/` and reference as `/images/filename.jpg`
@@ -109,16 +97,56 @@ tags: ["UX Design", "Mobile"]
 date: 2024-01-15
 ```
 
+## Current State (as of 2026-03-14)
+
+### What's been built
+- **Name**: "Tania Millan" set across all pages (header, footer, index, about, 404, project pages)
+- **Profile image**: `public/images/profile.png` displayed on about page
+- **Dark/light toggle**: Sun/moon ThemeToggle component in header, persists to localStorage, respects OS preference as default
+- **Vanta.js fog logo**: Animated Three.js fog orb in header next to name (loads via CDN in BaseLayout). Colors update on theme toggle.
+- **Accent colors**: Hot pink — Light: `#FF1493` / Dark: `#FF69B4` (synced from Figma)
+- **Scroll-snap sections**: Each section fills viewport, `scroll-snap-type: y mandatory` on `<main>`
+- **Reveal animations**: IntersectionObserver triggers fade-up with staggered children (`.reveal`, `.reveal-stagger`, `.reveal-child`)
+- **Magnetic hover**: Buttons and nav links track cursor and translate toward it (`.magnetic`, `.magnetic-inner`). Includes glow effect (`.btn-glow`) and expanding underline (`.nav-magnetic`)
+- **Project slider**: Off-canvas horizontal carousel with prev/next buttons, counter, progress bar, keyboard nav, aria roles
+- **Spacious layout**: Generous padding throughout — header h-20, sections py-20+, cards p-8
+
+### Current accent colors
+- Light: `--color-accent: #FF1493`, `--color-accent-hover: #E0007B`, `--color-accent-subtle: #FFD6EC`
+- Dark: `--color-accent: #FF69B4`, `--color-accent-hover: #FF85C8`, `--color-accent-subtle: #3D0A1F`
+
+### Vanta fog colors (in BaseLayout.astro)
+Must be updated manually when accent colors change — they use hex literals, not CSS variables.
+
+### Still placeholder — needs real content
+- **Project case studies**: `src/content/projects/` has sample markdown (FinFlow, Wellness, E-Commerce)
+- **Project images**: No real screenshots in `public/images/`
+- **About page bio**: Generic filler text about background and interests
+- **Contact email**: `hello@example.com` in index.astro, about.astro, and Footer.astro
+- **Social links**: Footer LinkedIn/Dribbble hrefs point to `#`
+- **Favicon**: Default Astro favicon.svg
+
+### Figma design system
+- File: "CC Portfolio" (fileKey: `nFnCpt5vM91oTKuXGe25Bd`)
+- Variable collection: "Portfolio Design System" with Light + Dark modes (29 tokens)
+- Home page frames: Light + Dark side by side, matching code layout
+- Figma Desktop Bridge plugin tends to disconnect — reopen before each operation
+- Design tokens can be synced in both directions (Figma → code, code → Figma)
+
+## Components added
+```
+src/components/ThemeToggle.astro  → Sun/moon dark mode toggle button
+```
+
+## Key scripts in BaseLayout.astro
+- **Theme init** (inline, in `<head>`): Prevents flash of wrong theme
+- **Theme toggle**: Click handler + localStorage
+- **Vanta fog init**: Creates fog in `#logo-fog`, re-inits on theme toggle
+- **Reveal observer**: IntersectionObserver for `.reveal` elements
+- **Magnetic hover**: Mouse-tracking transform on `.magnetic` elements
+
 ## Deployment
-Deploys to Cloudflare Pages. After changes:
+Not yet deployed. Deploys to Cloudflare Pages. After changes:
 1. `git add -A && git commit -m "description of change"`
 2. `git push`
 3. Cloudflare auto-builds and deploys
-
-### Cloudflare Pages Config
-- Build command: `npm run build`
-- Output directory: `dist`
-- Framework preset: Astro (auto-detected)
-
-### IMPORTANT: Update your site URL
-After connecting to Cloudflare Pages, update the `site` value in `astro.config.mjs` to your actual `.pages.dev` URL. This affects the sitemap, robots.txt, and social sharing previews (Open Graph images). The robots.txt is generated dynamically from this URL, so you only need to update it in one place.

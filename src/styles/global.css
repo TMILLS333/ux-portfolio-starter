@@ -23,9 +23,9 @@
     --color-text-inverse: #FAFAF8;
 
     /* Accent */
-    --color-accent: #0A7B83;
-    --color-accent-hover: #065A61;
-    --color-accent-subtle: #E8F4F5;
+    --color-accent: #FF1493;
+    --color-accent-hover: #E0007B;
+    --color-accent-subtle: #FFD6EC;
 
     /* Shadows */
     --shadow-sm: 0 1px 2px rgba(26, 25, 24, 0.04);
@@ -34,9 +34,8 @@
     --shadow-card-hover: 0 8px 30px rgba(26, 25, 24, 0.10);
   }
 
-  /* Dark mode — respects OS preference */
-  @media (prefers-color-scheme: dark) {
-    :root {
+  /* Dark mode — toggled via .dark class on <html> */
+  .dark {
       --color-bg: #141413;
       --color-surface: #1C1B19;
       --color-surface-elevated: #242320;
@@ -47,15 +46,14 @@
       --color-text-faint: #5A5957;
       --color-text-inverse: #1A1918;
 
-      --color-accent: #4FA8B3;
-      --color-accent-hover: #6DBDC6;
-      --color-accent-subtle: #0F2B2E;
+      --color-accent: #FF69B4;
+      --color-accent-hover: #FF85C8;
+      --color-accent-subtle: #3D0A1F;
 
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
       --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
       --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.35);
       --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
-    }
   }
 
   /* Base resets */
@@ -119,10 +117,8 @@
     -webkit-backdrop-filter: blur(12px);
   }
 
-  @media (prefers-color-scheme: dark) {
-    .glass {
-      background: rgba(28, 27, 25, 0.7);
-    }
+  .dark .glass {
+    background: rgba(28, 27, 25, 0.7);
   }
 
   /* Gradient text utility */
@@ -131,5 +127,118 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* ============================================
+     SCROLL-SNAP SECTIONS
+     ============================================ */
+  .snap-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: auto;
+    height: 100vh;
+  }
+
+  .snap-section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* ============================================
+     REVEAL ANIMATIONS
+     ============================================ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Staggered children */
+  .reveal-stagger > .reveal-child {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-stagger.revealed > .reveal-child {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-stagger.revealed > .reveal-child:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger.revealed > .reveal-child:nth-child(2) { transition-delay: 100ms; }
+  .reveal-stagger.revealed > .reveal-child:nth-child(3) { transition-delay: 200ms; }
+  .reveal-stagger.revealed > .reveal-child:nth-child(4) { transition-delay: 300ms; }
+  .reveal-stagger.revealed > .reveal-child:nth-child(5) { transition-delay: 400ms; }
+
+  /* ============================================
+     MAGNETIC / GRAVITATIONAL HOVER
+     ============================================ */
+  .magnetic {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+
+  .magnetic-inner {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+
+  /* Nav link hover line that grows from center */
+  .nav-magnetic {
+    position: relative;
+  }
+
+  .nav-magnetic::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 1px;
+  }
+
+  .nav-magnetic:hover::after,
+  .nav-magnetic:focus-visible::after {
+    width: 100%;
+    left: 0;
+  }
+
+  /* Button glow on hover */
+  .btn-glow {
+    position: relative;
+    overflow: visible;
+  }
+
+  .btn-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+    opacity: 0;
+    filter: blur(12px);
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+
+  .btn-glow:hover::before,
+  .btn-glow:focus-visible::before {
+    opacity: 0.4;
   }
 }

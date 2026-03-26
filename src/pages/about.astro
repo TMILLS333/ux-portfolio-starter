@@ -3,46 +3,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="About — Your Name"
+  title="About — Tania Millan"
   description="Learn more about my design philosophy, experience, and the tools I use to create user-centered digital experiences."
 >
-  <section class="max-w-content mx-auto px-6 pt-20 sm:pt-30 pb-20 sm:pb-30">
+  <section class="max-w-content mx-auto px-6 sm:px-10 pt-32 sm:pt-44 pb-28 sm:pb-40">
     <div class="max-w-2xl">
       <!-- Page header -->
       <p
-        class="font-body text-caption uppercase tracking-widest mb-4"
+        class="font-body text-caption uppercase tracking-[0.2em] mb-6"
         style="color: var(--color-accent);"
       >
         About
       </p>
-      <h1 class="font-display text-display-lg">
+      <h1 class="font-display text-display-lg leading-[1.05]">
         A little about me
       </h1>
 
+      <!-- Profile photo -->
+      <div class="mt-14">
+        <img
+          src="/images/profile.png"
+          alt="Profile photo of Tania Millan"
+          class="w-44 h-44 rounded-full object-cover"
+          style="border: 3px solid var(--color-accent);"
+        />
+      </div>
+
       <!-- Bio -->
-      <div class="mt-10 space-y-6 font-body text-body-lg" style="color: var(--color-text-muted);">
+      <div class="mt-14 space-y-8 font-body text-body-lg leading-relaxed" style="color: var(--color-text-muted);">
         <p>
           I'm a UX designer who believes great design is invisible — it just works.
           I focus on understanding real user needs and translating them into
           interfaces that feel intuitive from the first interaction.
         </p>
         <p>
-          With a background in [your background], I bring a unique perspective
-          to digital product design. I'm passionate about accessibility,
+          With a background in visual design and human-computer interaction, I bring a
+          thoughtful perspective to digital product design. I'm passionate about accessibility,
           design systems, and bridging the gap between design and development.
         </p>
         <p>
-          When I'm not designing, you'll find me [your interests].
-          I'm always exploring new tools and approaches to push my craft forward.
+          When I'm not designing, you'll find me sketching in coffee shops, exploring
+          new cities, or diving into the latest design tools.
+          I'm always looking for new ways to push my craft forward.
         </p>
       </div>
 
       <!-- Skills / Tools -->
-      <div class="mt-16">
-        <h2 class="font-display text-heading mb-6">
+      <div class="mt-24">
+        <h2 class="font-display text-heading mb-8">
           Tools & Skills
         </h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
           {[
             'Figma', 'Prototyping', 'User Research',
             'Design Systems', 'Interaction Design', 'Accessibility',
@@ -63,11 +74,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
 
       <!-- Experience timeline -->
-      <div class="mt-16">
-        <h2 class="font-display text-heading mb-6">
+      <div class="mt-24">
+        <h2 class="font-display text-heading mb-8">
           Experience
         </h2>
-        <div class="space-y-8">
+        <div class="space-y-10">
           {[
             { role: 'Senior UX Designer', company: 'Company Name', period: '2023 — Present', description: 'Led design for key product features, improving usability metrics by X%.' },
             { role: 'UX Designer', company: 'Company Name', period: '2021 — 2023', description: 'Designed and shipped mobile and web experiences for Y users.' },
@@ -97,16 +108,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
 
       <!-- CTA -->
-      <div class="mt-16 pt-16 border-t" style="border-color: var(--color-border);">
+      <div class="mt-24 pt-24 border-t" style="border-color: var(--color-border);">
         <h2 class="font-display text-heading">
           Let's connect
         </h2>
-        <p class="mt-3 font-body text-body-lg" style="color: var(--color-text-muted);">
+        <p class="mt-4 font-body text-body-lg leading-relaxed" style="color: var(--color-text-muted);">
           I'm always interested in new projects and conversations.
         </p>
         <a
           href="mailto:hello@example.com"
-          class="inline-flex items-center mt-6 px-6 py-3 font-body text-body font-medium rounded-button transition-colors"
+          class="inline-flex items-center mt-10 px-8 py-4 font-body text-body font-medium rounded-button transition-colors"
           style={`
             background-color: var(--color-accent);
             color: var(--color-text-inverse);
