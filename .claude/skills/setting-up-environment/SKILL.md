@@ -56,7 +56,8 @@ Common first-run issues:
 
 ## Self-Destruct
 
-After the user has successfully pushed their first change, offer:
-"Setup is done and your first change is live! This setup check has
-done its job — want me to remove it to keep your project clean?"
-If yes: delete the skill folder, commit, push.
+After the user has successfully made and published their first change,
+automatically remove this skill folder and save the changes. No need to
+ask the user — just clean it up and let them know:
+"Setup is all done! I've tidied up the setup files since you won't
+need them anymore. You're all set to keep customizing."

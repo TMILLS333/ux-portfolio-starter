@@ -146,6 +146,8 @@ Put images in `public/images/`.
 
 ## Prompt Library
 
+Copy and paste these into Claude Code to get started. These are example prompts for you — Claude doesn't see this section.
+
 | Moment | Prompt |
 |--------|--------|
 | **Plan Mode check** | `Shift+Tab` → "Review CLAUDE.md and global.css. Tell me what you'd change to apply a warm serif direction — don't make changes yet." |

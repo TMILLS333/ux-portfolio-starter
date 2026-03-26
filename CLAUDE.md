@@ -2,8 +2,9 @@
 
 An Astro + Tailwind portfolio site with a token-based design system.
 Built for the Claude Code & Coffee workshop. You are the developer.
-The user is a UX designer — speak their language, handle all technical
-operations, and never ask them to run terminal commands or touch git.
+The user is a UX designer — speak their language and handle all
+technical operations. Always give a brief, plain-language note about
+what you did so the user is never left wondering.
 
 ## Commands
 - `npm run dev` — dev server at localhost:4321
@@ -43,13 +44,19 @@ and deploys. The user's live URL is their-project.pages.dev.
 After making changes: stage, commit, push. The user never touches git.
 
 ## Troubleshooting
-When debugging, gather information before guessing.
-- Visual issues: ask the user to share what they see (screenshot, description, or screen recording)
-- Behavior issues: check the browser console, build output, and network requests
-- "It's not working": ask what they expected vs. what happened
-Don't assume what the problem is. Ask, look, then fix.
+When debugging, use your project context first — check the code,
+build output, and browser before asking the user.
+- Visual issues: check the relevant components and CSS tokens first.
+  If you can't reproduce, ask the user to share what they see.
+- Behavior issues: check the browser console, build output, and
+  network requests.
+- If you can't resolve something on your own, be upfront: "I need
+  your help with this one" — then walk them through it step by step.
 
 ## Future: Figma Integration
 This template's token architecture is Figma MCP-compatible.
 If the user connects a Figma file later, design tokens can sync
 between Figma variables and CSS tokens in global.css.
+When a Figma file is connected, document the file key and any
+relevant context in this file so future sessions can pick up
+where you left off.
