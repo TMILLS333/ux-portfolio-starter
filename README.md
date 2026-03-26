@@ -170,4 +170,4 @@ Put images in `public/images/`.
 
 ---
 
-Built for the Dallas local UX community — [Coffee & Claude](https://www.meetup.com/interaction-design-foundation-dallas/) workshop series.
+Built for the Dallas local UX community — Coffee & Claude workshop series.
