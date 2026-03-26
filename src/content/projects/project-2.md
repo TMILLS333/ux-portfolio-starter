@@ -4,7 +4,6 @@ description: "Designed an accessible patient portal that simplifies appointment 
 image: "/images/project-2.jpg"
 tags: ["UX Design", "Healthcare", "Accessibility"]
 date: 2024-03-10
-featured: true
 ---
 
 ## Overview

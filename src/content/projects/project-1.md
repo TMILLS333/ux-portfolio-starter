@@ -4,7 +4,6 @@ description: "Reimagined the mobile banking experience for Gen Z users, focusing
 image: "/images/project-1.jpg"
 tags: ["UX Design", "Mobile", "Fintech"]
 date: 2024-06-15
-featured: true
 ---
 
 ## Overview

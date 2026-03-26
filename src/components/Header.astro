@@ -11,7 +11,7 @@ const currentPath = Astro.url.pathname;
 
 <header
   class="sticky top-0 z-50 border-b backdrop-blur-nav"
-  style="background-color: rgba(var(--header-bg-rgb, 245, 240, 235), 0.85); border-color: var(--color-border);"
+  style="background-color: rgba(var(--color-bg-rgb), 0.85); border-color: var(--color-border);"
 >
   <nav class="max-w-content mx-auto px-6 sm:px-10 h-24 flex items-center justify-between" aria-label="Main navigation">
     <!-- Site name / logo -->
@@ -56,10 +56,6 @@ const currentPath = Astro.url.pathname;
 </header>
 
 <style>
-  :global(.dark) header {
-    --header-bg-rgb: 20, 20, 19;
-  }
-
   .logo-orb {
     background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover), var(--color-accent));
     background-size: 200% 200%;

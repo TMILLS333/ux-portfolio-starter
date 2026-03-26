@@ -33,6 +33,7 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
         src={project.data.image}
         alt={`${project.data.title} project hero image`}
         class="absolute inset-0 w-full h-full object-cover"
+        fetchpriority="high"
       />
       <div class="absolute inset-0" style="background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0.15) 100%);"></div>
 
@@ -212,105 +213,4 @@ const nextProject = allProjects[(currentIndex + 1) % allProjects.length];
   }
 </style>
 
-<style is:global>
-  /* Prose styles — editorial typography */
-  .prose {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 1.125rem;
-    line-height: 1.85;
-    color: var(--color-text-muted);
-  }
 
-  .prose h2 {
-    font-family: 'Satoshi', system-ui, sans-serif;
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--color-text);
-    margin-top: 5rem;
-    margin-bottom: 1.75rem;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-    padding-top: 1rem;
-  }
-
-  .prose h2:first-child {
-    margin-top: 0;
-    padding-top: 0;
-  }
-
-  .prose h3 {
-    font-family: 'Satoshi', system-ui, sans-serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin-top: 3.5rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .prose p {
-    margin-bottom: 2rem;
-  }
-
-  .prose ul, .prose ol {
-    margin-bottom: 1.75rem;
-    padding-left: 1.5rem;
-  }
-
-  .prose li {
-    margin-bottom: 0.75rem;
-  }
-
-  .prose ul li {
-    list-style-type: disc;
-  }
-
-  .prose ol li {
-    list-style-type: decimal;
-  }
-
-  .prose strong {
-    color: var(--color-text);
-    font-weight: 600;
-  }
-
-  .prose a {
-    color: var(--color-accent);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s ease;
-  }
-
-  .prose a:hover {
-    border-bottom-color: var(--color-accent);
-  }
-
-  .prose img {
-    border-radius: 12px;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-    border: 1px solid var(--color-border);
-  }
-
-  .prose blockquote {
-    border-left: 2px solid var(--color-accent);
-    padding-left: 1.5rem;
-    margin: 2.5rem 0;
-    font-style: italic;
-    color: var(--color-text);
-    font-size: 1.25rem;
-    line-height: 1.6;
-  }
-
-  .prose code {
-    font-family: 'JetBrains Mono', Consolas, monospace;
-    font-size: 0.875em;
-    padding: 0.15em 0.4em;
-    border-radius: 4px;
-    background-color: var(--color-surface-elevated);
-  }
-
-  .prose ol li::marker {
-    color: var(--color-accent);
-    font-weight: 600;
-  }
-</style>

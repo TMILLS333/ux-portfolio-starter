@@ -4,7 +4,6 @@ description: "Streamlined a 7-step checkout into 3 steps, reducing cart abandonm
 image: "/images/project-3.jpg"
 tags: ["UX Design", "E-Commerce", "Conversion"]
 date: 2024-01-20
-featured: false
 ---
 
 ## Overview

@@ -1,12 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-  darkMode: 'media',
+  darkMode: 'class',
   theme: {
     extend: {
       // ============================================
-      // DESIGN TOKENS — Claude Code + Figma MCP will update these
-      // to match your Figma design. Everything is in ONE place.
+      // DESIGN TOKENS — Update these to restyle the site.
+      // Everything is in ONE place.
       // ============================================
 
       colors: {

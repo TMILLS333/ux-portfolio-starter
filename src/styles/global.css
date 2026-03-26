@@ -4,13 +4,13 @@
 
 /* ============================================
    DESIGN TOKENS
-   Claude Code + Figma MCP will update these values
-   to match your Figma design. Light + dark in one place.
+   Update these values to restyle the entire site.
+   Light + dark in one place.
    ============================================ */
 
 @layer base {
   :root {
-    /* Backgrounds — Warm Cream */
+    /* Backgrounds */
     --color-bg: #F5F0EB;
     --color-surface: #FBF8F5;
     --color-surface-elevated: #FBF8F5;
@@ -22,7 +22,7 @@
     --color-text-faint: #A8A5A0;
     --color-text-inverse: #F5F0EB;
 
-    /* Accent — Cyan */
+    /* Accent */
     --color-accent: #0891B2;
     --color-accent-hover: #0E7490;
     --color-accent-subtle: #CFFAFE;
@@ -32,6 +32,11 @@
     --shadow-md: 0 4px 12px rgba(26, 25, 24, 0.06);
     --shadow-lg: 0 8px 24px rgba(26, 25, 24, 0.08);
     --shadow-card-hover: 0 8px 30px rgba(26, 25, 24, 0.10);
+
+    /* Derived — used by hero orbs, header backdrop, cine-glow.
+       These auto-follow your accent + bg tokens. */
+    --color-accent-rgb: 8, 145, 178;
+    --color-bg-rgb: 245, 240, 235;
   }
 
   /* Dark mode — toggled via .dark class on <html> */
@@ -54,6 +59,9 @@
       --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
       --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.35);
       --shadow-card-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
+
+      --color-accent-rgb: 34, 211, 238;
+      --color-bg-rgb: 20, 20, 19;
   }
 
   /* Base resets */
@@ -216,7 +224,7 @@
     left: 0;
   }
 
-  /* Button shimmer gradient */
+  /* Button shimmer gradient + glow */
   .btn-glow {
     position: relative;
     overflow: hidden;
@@ -249,7 +257,9 @@
   }
 
   /* ============================================
-     CINEMATIC — Immersive section styles
+     CINEMATIC — Optional polish
+     These .cine-* styles add immersive visual flair.
+     Safe to remove for a simpler site.
      ============================================ */
 
   /* Section number label: "01 — Title" */
@@ -278,19 +288,19 @@
     user-select: none;
   }
 
-  /* Ambient glow orb */
+  /* Ambient glow orb — uses accent token via --color-accent-rgb */
   .cine-glow {
     position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(8,145,178,0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.06) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     animation: cine-glow-drift 10s ease-in-out infinite alternate;
   }
 
   .dark .cine-glow {
-    background: radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.08) 0%, transparent 70%);
   }
 
   @keyframes cine-glow-drift {
@@ -433,115 +443,107 @@
   }
 
   /* ============================================
-     SCROLL-SNAP SECTIONS
+     PROSE — Markdown content typography
+     Used on project detail pages and anywhere
+     markdown is rendered.
      ============================================ */
-  .snap-container {
-    scroll-snap-type: y mandatory;
-    overflow-y: auto;
-    height: 100vh;
+  .prose {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.85;
+    color: var(--color-text-muted);
   }
 
-  .snap-section {
-    scroll-snap-align: start;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  .prose h2 {
+    font-family: 'Satoshi', system-ui, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-top: 5rem;
+    margin-bottom: 1.75rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    padding-top: 1rem;
   }
 
-  /* ============================================
-     REVEAL ANIMATIONS
-     ============================================ */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  .prose h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
   }
 
-  .reveal.revealed {
-    opacity: 1;
-    transform: translateY(0);
+  .prose h3 {
+    font-family: 'Satoshi', system-ui, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: 3.5rem;
+    margin-bottom: 1.25rem;
   }
 
-  /* Staggered children */
-  .reveal-stagger > .reveal-child {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  .prose p {
+    margin-bottom: 2rem;
   }
 
-  .reveal-stagger.revealed > .reveal-child {
-    opacity: 1;
-    transform: translateY(0);
+  .prose ul, .prose ol {
+    margin-bottom: 1.75rem;
+    padding-left: 1.5rem;
   }
 
-  .reveal-stagger.revealed > .reveal-child:nth-child(1) { transition-delay: 0ms; }
-  .reveal-stagger.revealed > .reveal-child:nth-child(2) { transition-delay: 100ms; }
-  .reveal-stagger.revealed > .reveal-child:nth-child(3) { transition-delay: 200ms; }
-  .reveal-stagger.revealed > .reveal-child:nth-child(4) { transition-delay: 300ms; }
-  .reveal-stagger.revealed > .reveal-child:nth-child(5) { transition-delay: 400ms; }
-
-  /* ============================================
-     MAGNETIC / GRAVITATIONAL HOVER
-     ============================================ */
-  .magnetic {
-    display: inline-block;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform;
+  .prose li {
+    margin-bottom: 0.75rem;
   }
 
-  .magnetic-inner {
-    display: inline-block;
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    will-change: transform;
+  .prose ul li {
+    list-style-type: disc;
   }
 
-  /* Nav link hover line that grows from center */
-  .nav-magnetic {
-    position: relative;
+  .prose ol li {
+    list-style-type: decimal;
   }
 
-  .nav-magnetic::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: var(--color-accent);
-    transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    border-radius: 1px;
+  .prose strong {
+    color: var(--color-text);
+    font-weight: 600;
   }
 
-  .nav-magnetic:hover::after,
-  .nav-magnetic:focus-visible::after {
-    width: 100%;
-    left: 0;
+  .prose a {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
   }
 
-  /* Button glow on hover */
-  .btn-glow {
-    position: relative;
-    overflow: visible;
+  .prose a:hover {
+    border-bottom-color: var(--color-accent);
   }
 
-  .btn-glow::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
-    opacity: 0;
-    filter: blur(12px);
-    transition: opacity 0.4s ease;
-    z-index: -1;
+  .prose img {
+    border-radius: 12px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border: 1px solid var(--color-border);
   }
 
-  .btn-glow:hover::before,
-  .btn-glow:focus-visible::before {
-    opacity: 0.4;
+  .prose blockquote {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 1.5rem;
+    margin: 2.5rem 0;
+    font-style: italic;
+    color: var(--color-text);
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
+
+  .prose code {
+    font-family: 'JetBrains Mono', Consolas, monospace;
+    font-size: 0.875em;
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    background-color: var(--color-surface-elevated);
+  }
+
+  .prose ol li::marker {
+    color: var(--color-accent);
+    font-weight: 600;
   }
 }

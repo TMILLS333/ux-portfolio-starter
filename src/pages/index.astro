@@ -8,7 +8,7 @@ const projects = (await getCollection('projects'))
 ---
 
 <BaseLayout
-  title="Tania Millan — UX Designer"
+  title="Your Name — UX Designer"
   description="UX designer crafting thoughtful, user-centered digital experiences. View my portfolio of mobile, web, and product design work."
 >
   <!-- Hero Section — Cinematic with subtle animated orbs -->
@@ -71,7 +71,7 @@ const projects = (await getCollection('projects'))
     .hero-orb-1 {
       width: 600px;
       height: 600px;
-      background: rgba(8, 145, 178, 0.08);
+      background: rgba(var(--color-accent-rgb), 0.08);
       top: -10%;
       right: -5%;
       animation: orb-drift-1 16s ease-in-out infinite;
@@ -80,7 +80,7 @@ const projects = (await getCollection('projects'))
     .hero-orb-2 {
       width: 450px;
       height: 450px;
-      background: rgba(6, 182, 212, 0.06);
+      background: rgba(var(--color-accent-rgb), 0.06);
       bottom: -15%;
       left: -5%;
       animation: orb-drift-2 20s ease-in-out infinite;
@@ -89,15 +89,15 @@ const projects = (await getCollection('projects'))
     .hero-orb-3 {
       width: 300px;
       height: 300px;
-      background: rgba(34, 211, 238, 0.05);
+      background: rgba(var(--color-accent-rgb), 0.05);
       top: 30%;
       left: 40%;
       animation: orb-drift-3 14s ease-in-out infinite;
     }
 
-    :global(.dark) .hero-orb-1 { background: rgba(34, 211, 238, 0.1); }
-    :global(.dark) .hero-orb-2 { background: rgba(103, 232, 249, 0.07); }
-    :global(.dark) .hero-orb-3 { background: rgba(34, 211, 238, 0.06); }
+    :global(.dark) .hero-orb-1 { background: rgba(var(--color-accent-rgb), 0.1); }
+    :global(.dark) .hero-orb-2 { background: rgba(var(--color-accent-rgb), 0.07); }
+    :global(.dark) .hero-orb-3 { background: rgba(var(--color-accent-rgb), 0.06); }
 
     @keyframes orb-drift-1 {
       0%, 100% { transform: translate(0, 0) scale(1); }
@@ -163,11 +163,10 @@ const projects = (await getCollection('projects'))
     <div
       id="slider-track"
       class="w-full reveal flex gap-8 overflow-x-auto scroll-smooth pb-4 select-none"
-      style="padding-left: max(1.5rem, calc((100vw - 72rem) / 2 + 2.5rem));"
+      style="padding-left: max(1.5rem, calc((100vw - 72rem) / 2 + 2.5rem)); cursor: grab; scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none;"
       role="region"
       aria-label="Project carousel"
       tabindex="0"
-      style="cursor: grab; scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none;"
     >
       {projects.map((project, i) => (
         <div
@@ -201,16 +200,7 @@ const projects = (await getCollection('projects'))
       </div>
     </div>
 
-    <!-- Progress bar -->
-    <div class="max-w-content mx-auto px-6 sm:px-10 mt-8">
-      <div class="h-0.5 rounded-full overflow-hidden" style="background-color: var(--color-border);">
-        <div
-          id="slider-progress"
-          class="h-full rounded-full transition-all duration-300 ease-out"
-          style="background-color: var(--color-accent); width: 0%;"
-        ></div>
-      </div>
-    </div>
+
   </section>
 
   <style>
