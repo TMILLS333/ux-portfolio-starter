@@ -53,6 +53,14 @@ build output, and browser before asking the user.
 - If you can't resolve something on your own, be upfront: "I need
   your help with this one" — then walk them through it step by step.
 
+## Project Context
+Update this section as the project evolves — when the user personalizes
+their site, chooses a design direction, connects a domain, etc.
+
+- **Owner**: (name, role)
+- **Live URL**: (Cloudflare Pages URL)
+- **Design direction**: (colors, fonts, mood — once chosen)
+
 ## Future: Figma Integration
 This template's token architecture is Figma MCP-compatible.
 If the user connects a Figma file later, design tokens can sync

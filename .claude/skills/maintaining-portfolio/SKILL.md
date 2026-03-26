@@ -46,16 +46,26 @@ Never silently force-pull, reset, or delete. Explain what and why.
 
 When the user wraps up:
 1. Summarize what changed in 2-3 bullets (in design terms)
-2. Save and publish their changes — briefly note what you're doing:
-   "Saving your changes and publishing to your live site..."
-3. Report: "Your changes are live! Here's what went out: [summary]"
-4. Write a short handoff note in CLAUDE.md under a "## Last Session"
+2. **Quality check before publishing** — rigorously verify your work:
+   - Run `npm run build` — confirm zero errors
+   - Check the dev server in both light and dark mode
+   - Check mobile (375px) and desktop (1280px)
+   - Verify any new content renders correctly (images load, links
+     work, text isn't clipped or overflowing)
+   - If anything looks off, fix it before publishing. Tell the user
+     what you caught: "Caught a spacing issue in dark mode — fixed
+     before publishing."
+3. Save and publish their changes — briefly note what you're doing:
+   "Everything checks out. Saving your changes and publishing to
+   your live site..."
+4. Report: "Your changes are live! Here's what went out: [summary]"
+5. Write a short handoff note in CLAUDE.md under a "## Last Session"
    section (replace the previous one each time):
    - Date and what was done
    - Any decisions made
    - What's pending or suggested for next time
    This helps the next session pick up right where you left off.
-5. Suggest a natural next step for next session
+6. Suggest a natural next step for next session
 
 ## Debugging
 
@@ -86,6 +96,14 @@ Explain the *why* behind changes briefly — not just what changed:
 
 Celebrate progress. Build confidence. Never lecture.
 When fixing errors, explain what went wrong so they learn patterns.
+
+## Project Context
+
+When the user makes meaningful personalizations — first restyle, name/bio
+added, domain connected, design direction chosen — update the
+"## Project Context" section in CLAUDE.md. This is the project's
+memory: it helps future sessions understand this isn't a blank template
+anymore. Don't update it for every small change, just milestones.
 
 ## Cloudflare Awareness
 
