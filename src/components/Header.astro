@@ -11,25 +11,23 @@ const currentPath = Astro.url.pathname;
 
 <header
   class="sticky top-0 z-50 border-b backdrop-blur-nav"
-  style="background-color: rgba(var(--header-bg-rgb, 250, 250, 248), 0.85); border-color: var(--color-border);"
+  style="background-color: rgba(var(--header-bg-rgb, 245, 240, 235), 0.85); border-color: var(--color-border);"
 >
-  <nav class="max-w-content mx-auto px-6 sm:px-10 h-20 flex items-center justify-between" aria-label="Main navigation">
+  <nav class="max-w-content mx-auto px-6 sm:px-10 h-24 flex items-center justify-between" aria-label="Main navigation">
     <!-- Site name / logo -->
     <a
       href="/"
-      class="flex items-center gap-3 font-display text-subheading tracking-tight hover:opacity-70 transition-opacity"
+      class="flex items-center gap-4 hover:opacity-70 transition-opacity"
       style="color: var(--color-text);"
     >
-      <div
-        id="logo-fog"
-        class="w-8 h-8 rounded-full overflow-hidden flex-shrink-0"
-        style="border: 2px solid var(--color-accent);"
-      ></div>
-      Tania Millan
+      <div class="logo-orb w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center font-display font-bold"
+        style="color: var(--color-text-inverse); font-size: 15px;"
+      >P</div>
+      <span class="font-display text-subheading font-semibold tracking-tight">Portfolio</span>
     </a>
 
     <!-- Navigation links + theme toggle -->
-    <ul class="flex items-center gap-8" role="list">
+    <ul class="flex items-center gap-10" role="list">
       {navLinks.map(({ href, label }) => {
         const isActive = currentPath === href || (href !== '/' && currentPath.startsWith(href));
         return (
@@ -37,12 +35,12 @@ const currentPath = Astro.url.pathname;
             <a
               href={href}
               class:list={[
-                'magnetic nav-magnetic font-body text-caption tracking-wide uppercase',
+                'magnetic nav-magnetic font-display text-body tracking-wide uppercase',
                 isActive
-                  ? 'font-medium'
-                  : '',
+                  ? 'font-semibold'
+                  : 'font-medium',
               ]}
-              style={isActive ? 'color: var(--color-text);' : 'color: var(--color-text-muted);'}
+              style={isActive ? 'color: var(--color-text); letter-spacing: 0.15em;' : 'color: var(--color-text-muted); letter-spacing: 0.15em;'}
               aria-current={isActive ? 'page' : undefined}
             >
               <span class="magnetic-inner">{label}</span>
@@ -60,5 +58,16 @@ const currentPath = Astro.url.pathname;
 <style>
   :global(.dark) header {
     --header-bg-rgb: 20, 20, 19;
+  }
+
+  .logo-orb {
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover), var(--color-accent));
+    background-size: 200% 200%;
+    animation: logo-shimmer 4s ease-in-out infinite;
+  }
+
+  @keyframes logo-shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 </style>

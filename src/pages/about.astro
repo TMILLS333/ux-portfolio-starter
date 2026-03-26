@@ -6,96 +6,145 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="About — Tania Millan"
   description="Learn more about my design philosophy, experience, and the tools I use to create user-centered digital experiences."
 >
-  <section class="max-w-content mx-auto px-6 sm:px-10 pt-32 sm:pt-44 pb-28 sm:pb-40">
-    <div class="max-w-2xl">
-      <!-- Page header -->
+  <!-- Hero — full viewport, dramatic -->
+  <section class="snap-section relative overflow-hidden">
+    <div class="cine-glow" style="top: -20%; right: -10%;"></div>
+    <div class="max-w-content mx-auto px-6 sm:px-10 reveal">
       <p
         class="font-body text-caption uppercase tracking-[0.2em] mb-6"
         style="color: var(--color-accent);"
       >
         About
       </p>
-      <h1 class="font-display text-display-lg leading-[1.05]">
-        A little about me
+      <h1 class="font-display leading-[1.0] tracking-[-0.03em]" style="font-size: clamp(48px, 8vw, 96px);">
+        Designing for<br>the <span class="text-gradient">human</span><br>experience
       </h1>
+    </div>
+  </section>
 
-      <!-- Profile photo -->
-      <div class="mt-14">
-        <img
-          src="/images/profile.png"
-          alt="Profile photo of Tania Millan"
-          class="w-44 h-44 rounded-full object-cover"
-          style="border: 3px solid var(--color-accent);"
-        />
-      </div>
+  <!-- Philosophy — immersive split section -->
+  <section class="snap-section relative overflow-hidden" style="border-top: 1px solid var(--color-border);">
+    <div class="cine-bgtext">Philosophy</div>
+    <div class="cine-glow" style="bottom: -20%; left: 30%;"></div>
 
-      <!-- Bio -->
-      <div class="mt-14 space-y-8 font-body text-body-lg leading-relaxed" style="color: var(--color-text-muted);">
-        <p>
-          I'm a UX designer who believes great design is invisible — it just works.
-          I focus on understanding real user needs and translating them into
-          interfaces that feel intuitive from the first interaction.
-        </p>
-        <p>
-          With a background in visual design and human-computer interaction, I bring a
-          thoughtful perspective to digital product design. I'm passionate about accessibility,
-          design systems, and bridging the gap between design and development.
-        </p>
-        <p>
-          When I'm not designing, you'll find me sketching in coffee shops, exploring
-          new cities, or diving into the latest design tools.
-          I'm always looking for new ways to push my craft forward.
-        </p>
-      </div>
-
-      <!-- Skills / Tools -->
-      <div class="mt-24">
-        <h2 class="font-display text-heading mb-8">
-          Tools & Skills
+    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-screen w-full">
+      <!-- Left — text -->
+      <div class="flex flex-col justify-center px-6 sm:px-10 lg:px-20 py-20 lg:py-28 reveal reveal-stagger">
+        <div class="reveal-child cine-section-label mb-10">01 — Philosophy</div>
+        <h2
+          class="reveal-child font-display leading-[1.15] tracking-[-0.02em] mb-10"
+          style="font-size: clamp(32px, 4vw, 48px);"
+        >
+          I believe great design<br>is <span class="text-gradient">invisible</span>
         </h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-          {[
-            'Figma', 'Prototyping', 'User Research',
-            'Design Systems', 'Interaction Design', 'Accessibility',
-            'HTML & CSS', 'Usability Testing', 'Information Architecture',
-          ].map((skill) => (
-            <div
-              class="px-4 py-3 rounded-tag font-body text-caption text-center"
-              style={`
-                background-color: var(--color-surface-elevated);
-                border: 1px solid var(--color-border);
-                color: var(--color-text-muted);
-              `}
-            >
-              {skill}
-            </div>
-          ))}
+        <div class="reveal-child space-y-6 font-body text-body-lg leading-relaxed max-w-lg" style="color: var(--color-text-muted);">
+          <p>
+            I focus on understanding real user needs and translating them into
+            interfaces that feel intuitive from the first interaction.
+          </p>
+          <p>
+            With a background in visual design and human-computer interaction, I bring a
+            thoughtful perspective to digital product design. I'm passionate about accessibility,
+            design systems, and bridging the gap between design and development.
+          </p>
+        </div>
+        <div class="reveal-child cine-pullquote mt-12 max-w-md">
+          <p>"The best interface is the one you never notice — it just gets out of the way."</p>
         </div>
       </div>
 
-      <!-- Experience timeline -->
-      <div class="mt-24">
-        <h2 class="font-display text-heading mb-8">
-          Experience
-        </h2>
-        <div class="space-y-10">
-          {[
-            { role: 'Senior UX Designer', company: 'Company Name', period: '2023 — Present', description: 'Led design for key product features, improving usability metrics by X%.' },
-            { role: 'UX Designer', company: 'Company Name', period: '2021 — 2023', description: 'Designed and shipped mobile and web experiences for Y users.' },
-            { role: 'Junior Designer', company: 'Company Name', period: '2019 — 2021', description: 'Started my design career creating wireframes and prototypes.' },
-          ].map((job) => (
-            <div
-              class="pb-8 border-b last:border-b-0"
-              style="border-color: var(--color-border);"
-            >
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <h3 class="font-display text-subheading" style="color: var(--color-text);">
-                  {job.role}
-                </h3>
-                <span class="font-body text-caption" style="color: var(--color-text-faint);">
-                  {job.period}
-                </span>
-              </div>
+      <!-- Right — photo with layered frames -->
+      <div
+        class="hidden lg:flex items-center justify-center px-20 py-28 relative overflow-hidden"
+        style="background-color: var(--color-surface); border-left: 1px solid var(--color-border);"
+      >
+        <!-- Decorative frames -->
+        <div
+          class="absolute top-16 right-16 w-48 h-48 rounded opacity-60"
+          style="border: 1px solid var(--color-border);"
+        ></div>
+        <div
+          class="absolute bottom-20 left-16 w-28 h-28 rounded opacity-15"
+          style="border: 1px solid var(--color-accent);"
+        ></div>
+
+        <div class="relative" style="width: 360px; height: 450px;">
+          <!-- Shadow frame -->
+          <div
+            class="absolute rounded-2xl"
+            style="top: 20px; left: 20px; right: -20px; bottom: -20px; border: 1px solid var(--color-border);"
+          ></div>
+          <!-- Accent corner -->
+          <div
+            class="absolute opacity-60"
+            style="top: -12px; right: -12px; width: 48px; height: 48px; border-top: 2px solid var(--color-accent); border-right: 2px solid var(--color-accent); border-radius: 0 8px 0 0;"
+          ></div>
+
+          <!-- Floating stats -->
+          <div class="cine-stat" style="top: -10px; left: -30px;">
+            <div class="cine-stat-value">5+</div>
+            <div class="cine-stat-label">Years in UX</div>
+          </div>
+
+          <!-- Photo placeholder -->
+          <div
+            class="w-full h-full rounded-xl flex items-center justify-center relative overflow-hidden"
+            style="background-color: var(--color-surface-elevated); border: 1px solid var(--color-border);"
+          >
+            <svg class="w-20 h-20 opacity-50" style="color: var(--color-text-faint);" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+            </svg>
+          </div>
+
+          <div class="cine-stat" style="bottom: 20px; right: -40px; animation-delay: 3s;">
+            <div class="cine-stat-value">20+</div>
+            <div class="cine-stat-label">Projects shipped</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities — marquee strip -->
+  <section
+    class="py-24 sm:py-28 overflow-hidden"
+    style="border-top: 1px solid var(--color-border);"
+  >
+    <div class="max-w-content mx-auto px-6 sm:px-10 mb-12 reveal">
+      <div class="cine-section-label">02 — Capabilities</div>
+    </div>
+    <div class="reveal">
+      <div class="cine-marquee-track">
+        <span>Figma</span><span>Prototyping</span><span>User Research</span><span>Design Systems</span><span>Interaction Design</span><span>Accessibility</span><span>HTML & CSS</span><span>Usability Testing</span><span>Information Architecture</span>
+        <span>Figma</span><span>Prototyping</span><span>User Research</span><span>Design Systems</span><span>Interaction Design</span><span>Accessibility</span><span>HTML & CSS</span><span>Usability Testing</span><span>Information Architecture</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience — cinematic timeline -->
+  <section
+    class="py-24 sm:py-28"
+    style="border-top: 1px solid var(--color-border);"
+  >
+    <div class="max-w-content mx-auto px-6 sm:px-10">
+      <div class="cine-section-label mb-16 reveal">03 — Experience</div>
+      <div class="max-w-3xl reveal">
+        {[
+          { role: 'Senior UX Designer', company: 'Company Name', period: '2023 — Present', description: 'Led design for key product features, improving usability metrics by X%.' },
+          { role: 'UX Designer', company: 'Company Name', period: '2021 — 2023', description: 'Designed and shipped mobile and web experiences for Y users.' },
+          { role: 'Junior Designer', company: 'Company Name', period: '2019 — 2021', description: 'Started my design career creating wireframes and prototypes.' },
+        ].map((job) => (
+          <div
+            class="cine-timeline-item cine-hover-line grid grid-cols-[140px_1fr] sm:grid-cols-[160px_1fr] gap-8 sm:gap-12 py-10 border-b"
+            style="border-color: var(--color-border);"
+          >
+            <span class="font-body text-caption pt-1" style="color: var(--color-text-faint);">
+              {job.period}
+            </span>
+            <div>
+              <h3 class="font-display text-subheading transition-colors duration-300" style="color: var(--color-text);">
+                {job.role}
+              </h3>
               <p class="mt-1 font-body text-caption font-medium" style="color: var(--color-accent);">
                 {job.company}
               </p>
@@ -103,27 +152,34 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 {job.description}
               </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+    </div>
+  </section>
 
-      <!-- CTA -->
-      <div class="mt-24 pt-24 border-t" style="border-color: var(--color-border);">
-        <h2 class="font-display text-heading">
-          Let's connect
-        </h2>
-        <p class="mt-4 font-body text-body-lg leading-relaxed" style="color: var(--color-text-muted);">
-          I'm always interested in new projects and conversations.
-        </p>
+  <!-- CTA -->
+  <section
+    class="snap-section"
+    style="border-top: 1px solid var(--color-border);"
+  >
+    <div class="max-w-content mx-auto px-6 sm:px-10 text-center reveal-stagger reveal">
+      <h2 class="reveal-child font-display text-display">
+        Let's work together
+      </h2>
+      <p
+        class="reveal-child mt-6 font-body text-body-lg max-w-xl mx-auto leading-relaxed"
+        style="color: var(--color-text-muted);"
+      >
+        I'm always interested in new projects and conversations.
+      </p>
+      <div class="reveal-child mt-12">
         <a
           href="mailto:hello@example.com"
-          class="inline-flex items-center mt-10 px-8 py-4 font-body text-body font-medium rounded-button transition-colors"
-          style={`
-            background-color: var(--color-accent);
-            color: var(--color-text-inverse);
-          `}
+          class="magnetic btn-glow inline-flex items-center px-10 py-4 font-body text-body font-medium rounded-button transition-colors"
+          style="background-color: var(--color-accent); color: var(--color-text-inverse);"
         >
-          Say hello
+          <span class="magnetic-inner">Say hello</span>
         </a>
       </div>
     </div>

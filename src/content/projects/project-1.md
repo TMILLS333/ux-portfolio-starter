@@ -1,7 +1,7 @@
 ---
 title: "Mobile Banking Redesign"
 description: "Reimagined the mobile banking experience for Gen Z users, focusing on simplified navigation and financial literacy features."
-image: "https://placehold.co/800x500/e2e8f0/475569?text=Project+1"
+image: "/images/project-1.jpg"
 tags: ["UX Design", "Mobile", "Fintech"]
 date: 2024-06-15
 featured: true

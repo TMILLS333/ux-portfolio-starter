@@ -1,7 +1,7 @@
 ---
 title: "E-Commerce Checkout Flow"
 description: "Streamlined a 7-step checkout into 3 steps, reducing cart abandonment by 35% for a mid-size retailer."
-image: "https://placehold.co/800x500/fef3c7/92400e?text=Project+3"
+image: "/images/project-3.jpg"
 tags: ["UX Design", "E-Commerce", "Conversion"]
 date: 2024-01-20
 featured: false

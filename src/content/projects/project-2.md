@@ -1,7 +1,7 @@
 ---
 title: "Healthcare Patient Portal"
 description: "Designed an accessible patient portal that simplifies appointment scheduling, test results, and provider communication."
-image: "https://placehold.co/800x500/dbeafe/1e40af?text=Project+2"
+image: "/images/project-2.jpg"
 tags: ["UX Design", "Healthcare", "Accessibility"]
 date: 2024-03-10
 featured: true
