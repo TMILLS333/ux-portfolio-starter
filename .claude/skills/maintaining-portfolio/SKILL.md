@@ -49,7 +49,13 @@ When the user wraps up:
 2. Save and publish their changes — briefly note what you're doing:
    "Saving your changes and publishing to your live site..."
 3. Report: "Your changes are live! Here's what went out: [summary]"
-4. Suggest a natural next step for next session
+4. Write a short handoff note in CLAUDE.md under a "## Last Session"
+   section (replace the previous one each time):
+   - Date and what was done
+   - Any decisions made
+   - What's pending or suggested for next time
+   This helps the next session pick up right where you left off.
+5. Suggest a natural next step for next session
 
 ## Debugging
 
@@ -92,10 +98,10 @@ The site deploys to Cloudflare Pages:
 - Common issue: build fails from import errors or missing dependencies
 
 You handle deployments. If a deploy issue requires the user to do
-something in the Cloudflare dashboard (like connecting a custom domain),
-reassure them and walk them through it step by step with clear
-instructions. Don't just say "check the dashboard" — tell them
-exactly where to click.
+something in the Cloudflare dashboard, reassure them and walk them
+through it step by step with clear instructions. If they share a
+screenshot of the dashboard, use it to guide them. Don't just say
+"check the dashboard" — tell them exactly where to click.
 
 ## Security
 

@@ -57,6 +57,5 @@ build output, and browser before asking the user.
 This template's token architecture is Figma MCP-compatible.
 If the user connects a Figma file later, design tokens can sync
 between Figma variables and CSS tokens in global.css.
-When a Figma file is connected, document the file key and any
-relevant context in this file so future sessions can pick up
-where you left off.
+When a Figma file is connected, document relevant context in
+this file so future sessions can pick up where you left off.

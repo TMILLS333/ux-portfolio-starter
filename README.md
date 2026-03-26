@@ -150,6 +150,7 @@ Copy and paste these into Claude Code to get started. These are example prompts 
 
 | Moment | Prompt |
 |--------|--------|
+| **Start a session** | "Read CLAUDE.md and check the last session notes. Pull in any new changes, run the dev server, and let me know where we left off." |
 | **Plan Mode check** | `Shift+Tab` → "Review CLAUDE.md and global.css. Tell me what you'd change to apply a warm serif direction — don't make changes yet." |
 | **Swap a single color** | "Change --color-accent to #C4553A. Update both light and dark mode values in global.css." |
 | **Swap the heading font** | "Swap the heading font to Instrument Serif from Google Fonts. Update BaseHead.astro, tailwind.config.mjs, and global.css." |
@@ -158,6 +159,7 @@ Copy and paste these into Claude Code to get started. These are example prompts 
 | **Full restyle** | "Give this site a warm, earthy feel — think terracotta accent, cream backgrounds, and a serif heading font. Update both light and dark mode." |
 | **Update site URL** | "Update the site URL in astro.config.mjs to https://my-name.pages.dev and update robots.txt to match." |
 | **Update email** | "Change the contact email from hello@example.com to my-email@example.com everywhere it appears." |
+| **End a session** | "I'm done for today. Save and publish my changes, then write a handoff note in CLAUDE.md so next time picks up where we left off." |
 | **Deploy** | `git add -A && git commit -m "my design direction" && git push` |
 
 ---
