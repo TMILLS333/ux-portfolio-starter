@@ -1,16 +1,20 @@
 # UX Portfolio Starter
 
-A clean, SEO-ready portfolio template for UX designers. Built with [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com), designed to be customized with [Claude Code](https://code.claude.com) — no coding experience needed.
+A clean, SEO-ready portfolio template for UX designers. Built with [Astro](https://astro.build/) + [Tailwind CSS](https://tailwindcss.com/), designed to be customized with [Claude Code](https://code.claude.com/) — no coding experience needed.
+
+---
 
 ## Prerequisites
 
 Before you start, make sure you have:
 
-- **Node.js** (v18+) — [nodejs.org](https://nodejs.org)
-- **Git** — [git-scm.com](https://git-scm.com)
+- **Node.js** (v18+) — [nodejs.org](https://nodejs.org/)
+- **Git** — [git-scm.com](https://git-scm.com/)
 - **GitHub account** — free tier is fine
 - **Claude Pro subscription** ($20/mo) — required for Claude Code → [claude.ai/upgrade](https://claude.ai/upgrade)
 - **Claude Code** installed: `npm install -g @anthropic-ai/claude-code`
+
+---
 
 ## Quick Start
 
@@ -27,13 +31,13 @@ npm install
 npm run dev
 ```
 
-Your site is running at **http://localhost:4321**
+Your site is running at [http://localhost:4321](http://localhost:4321/)
 
 ### 3. Open Claude Code
 
 In your project folder, open a terminal and type:
 
-```bash
+```
 claude
 ```
 
@@ -82,7 +86,8 @@ git add -A && git commit -m "Apply my design direction" && git push
 ```
 
 Then connect to Cloudflare Pages:
-1. Go to [dash.cloudflare.com](https://dash.cloudflare.com) > Workers & Pages > Create > Pages
+
+1. Go to [dash.cloudflare.com](https://dash.cloudflare.com/) > **Workers & Pages** > **Create** > **Pages**
 2. Connect your GitHub repo
 3. Framework preset: **Astro**, Build command: `npm run build`, Output: `dist`
 4. Click **Save and Deploy**
@@ -103,13 +108,16 @@ src/
   styles/       → Global CSS + design tokens
 public/         → Static files (images, favicon)
 CLAUDE.md       → Project context for Claude Code
+CUSTOMIZATION.md → Detailed restyle reference
 ```
+
+---
 
 ## Adding a Project
 
 Create a new file in `src/content/projects/`:
 
-```markdown
+```yaml
 ---
 title: "My Project"
 description: "A short description for the card"
@@ -123,28 +131,34 @@ Write the full case study here using markdown.
 
 Put images in `public/images/`.
 
+---
+
 ## What's Included
 
 - **SEO** — Meta tags, Open Graph, Twitter cards, JSON-LD, sitemap, robots.txt
 - **Accessibility** — Skip links, semantic HTML, ARIA, focus indicators, reduced motion
 - **Security** — Cloudflare security headers (X-Frame-Options, CSP hints, etc.)
 - **Performance** — Zero JavaScript by default, lazy-loaded images, static output
-- **AI-Ready** — CLAUDE.md gives Claude Code full project context so it makes smart changes
-- **Dark Mode** — Automatic via `prefers-color-scheme`, token-based (light + dark values)
+- **AI-Ready** — `CLAUDE.md` + conditional rules give Claude Code full project context
+- **Dark Mode** — Toggle-based with token system (light + dark values in one place)
+
+---
 
 ## Prompt Library
 
 | Moment | Prompt |
 |--------|--------|
-| Plan Mode check | `Shift+Tab` → "Review CLAUDE.md and global.css. Tell me what you'd change to apply a warm serif direction — don't make changes yet." |
-| Swap a single color | "Change `--color-accent` to `#C4553A`. Update both light and dark mode values in global.css." |
-| Swap the heading font | "Swap the heading font to Instrument Serif from Google Fonts. Update BaseHead.astro, tailwind.config.mjs, and global.css." |
-| Update your bio | "Update the about page with my name, location, and specialties. Keep the layout." |
-| Add a project | "Create a new project called [name] with tags [tags] and a placeholder image." |
-| Full restyle | "Give this site a warm, earthy feel — think terracotta accent, cream backgrounds, and a serif heading font. Update both light and dark mode." |
-| Update site URL | "Update the site URL in astro.config.mjs to https://my-name.pages.dev and update robots.txt to match." |
-| Update email | "Change the contact email from hello@example.com to my-email@example.com everywhere it appears." |
-| Deploy | `git add -A && git commit -m "my design direction" && git push` |
+| **Plan Mode check** | `Shift+Tab` → "Review CLAUDE.md and global.css. Tell me what you'd change to apply a warm serif direction — don't make changes yet." |
+| **Swap a single color** | "Change --color-accent to #C4553A. Update both light and dark mode values in global.css." |
+| **Swap the heading font** | "Swap the heading font to Instrument Serif from Google Fonts. Update BaseHead.astro, tailwind.config.mjs, and global.css." |
+| **Update your bio** | "Update the about page with my name, location, and specialties. Keep the layout." |
+| **Add a project** | "Create a new project called [name] with tags [tags] and a placeholder image." |
+| **Full restyle** | "Give this site a warm, earthy feel — think terracotta accent, cream backgrounds, and a serif heading font. Update both light and dark mode." |
+| **Update site URL** | "Update the site URL in astro.config.mjs to https://my-name.pages.dev and update robots.txt to match." |
+| **Update email** | "Change the contact email from hello@example.com to my-email@example.com everywhere it appears." |
+| **Deploy** | `git add -A && git commit -m "my design direction" && git push` |
+
+---
 
 ## Commands
 
@@ -156,4 +170,4 @@ Put images in `public/images/`.
 
 ---
 
-Built for a community workshop series.
+Built for the Dallas local UX community — [Coffee & Claude](https://www.meetup.com/interaction-design-foundation-dallas/) workshop series.
